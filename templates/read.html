@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Reddit Reader</title>
+    <link href="https://andybrewer.github.io/mvp/mvp.css" rel="stylesheet" />
+  </head>
+
+  <body>
+    <header>
+      <h1><a href="/">🎈Reddit Reader🎈</a></h1>
+      <h3>
+        Reading: {% for subreddit in temp_subreddit_list %}
+        r/{{subreddit}}
+        {% endfor %}
+      </h3>
+    </header>
+    <main>
+      {% for num, _ in enumerate(db) %}
+      <div>
+        <h3>
+          <a href="{{db[num][1]['href']}}" target="_blank">{{db[num][1]['title']}}</a>
+        </h3>
+        <h4>{% if db[num][1]['vote'] >= 1000 %}
+            {{db[num][1]['vote'] / 1000}}k
+            {% else %}
+            {{db[num][1]['vote']}}
+            {% endif %} 
+            upvotes · r/{{db[num][1]['subreddit']}}</h4>
+        <hr />
+      </div>
+      {% endfor %}
+  </body>
+</html>
